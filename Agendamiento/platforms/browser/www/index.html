@@ -256,7 +256,7 @@
 
 <div class="container">
 
-  <div class="page-header" id="banner">
+  <div class="page-header">
     <div class="row">
       <div class="col-sm-12">
         <h1>Iniciar sesión</h1>
@@ -265,7 +265,14 @@
       </div>
       <div class="col-sm-12">
         <div class="well infobox">
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+		  
+			<div class="form-group label-floating">
+			  <label  class="control-label" for="focusedInput2">Email</label>
+			  <input  type="email" class="form-control" id="focusedInput2" type="text">
+			  <p class="help-block">Debe ingresar un email valido.</p>
+			</div>
+		  
+          
 		  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
           <a href="javascript:void(0)" class="btn btn-raised btn-info col-md-12">Ingresar<div class="ripple-container"></div></a>
         </div>
