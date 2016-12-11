@@ -271,10 +271,8 @@
 			  <input  type="email" class="form-control" id="focusedInput2" type="text">
 			  <p class="help-block">Debe ingresar un email valido.</p>
 			</div>
-		  
-          
 		  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-          <a href="javascript:void(0)" class="btn btn-raised btn-info col-md-12">Ingresar<div class="ripple-container"></div></a>
+          <a onclick="Mostrar()" class="btn btn-raised btn-info col-md-12">Ingresa</a>
         </div>
       </div>
     </div>
@@ -306,6 +304,28 @@
     
    
   });
+  
+  function Mostrar() {
+  debugger;
+    $.ajax({
+    type: 'POST',
+    data: {
+      parametro1: $('#nombre').val(),
+      parametro2: $('#email').val()
+    },
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/UserValidate',
+    dataType: 'json',   
+    success: function(response) {
+      debugger;
+      alert("hola "+response.DataObject.Nombre)
+      window.location="Agenda.html";
+
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+}
 </script>
 </body>
 </html>
