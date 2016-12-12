@@ -274,7 +274,7 @@
 	</div>
 </div>
 <div class="container">
-<div class="panel panel-info">
+<div class="panel panel-info" style="height=100px;">
   <div class="panel-heading">
     <h3 class="panel-title">Panel info</h3>
   </div>
@@ -367,8 +367,10 @@
 		codHtml= codHtml.format(item.Titulo,item.Descripcion);
 		var elemento = $.parseHTML(codHtml);
 	
-		var groupitem = document.createElement('div');
+		var groupitem = document.createElement('a');
 		groupitem.setAttribute('class', 'list-group-item' );
+		groupitem.setAttribute('href', '#' );
+		
 		elemento.forEach(function(itemHtml){groupitem.appendChild (itemHtml);});		
 		
 		padreTag.appendChild(groupitem);
