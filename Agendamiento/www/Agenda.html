@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
   <title>Bootstrap Material</title>
 
   <!-- Material Design fonts -->
@@ -21,14 +20,21 @@
   <link href="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+  .affix {
+      top: 0;
+      width: 100%;
+	  z-index: 1;
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }
+    .container {
+      padding-top: 70px;
+    }
     body {
       padding-top: 0px
     }
-
-    #banner {
-      border-bottom: none
-    }
-
     .page-header h1 {
       font-size: 4em
     }
@@ -249,7 +255,7 @@
   </style>
 </head>
 <body>
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse affix">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
@@ -313,6 +319,30 @@
       {
         Titulo:"marco",
 		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
+      },
+      {
+        Titulo:"marco",
+		Descripcion:"deisy"
       }
     ];
 	mostrarTabla(datos,'citasAgendadas');
@@ -346,7 +376,23 @@
   
   function Mostrar() {
   window.location="Agenda.html";
-    
+    $.ajax({
+    type: 'POST',
+    data: {
+      parametro1: $('#nombre').val(),
+      parametro2: $('#email').val()
+    },
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/UserValidate',
+    dataType: 'json',   
+    success: function(response) {
+      alert("hola "+response.DataObject.Nombre)
+      window.location="Agenda.html";
+
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
 }
 </script>
 </body>
