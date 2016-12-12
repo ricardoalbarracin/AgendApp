@@ -1,0 +1,181 @@
+    <!DOCTYPE html>
+    <html>
+    <!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+      <title>Bootstrap Material</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Material Design -->
+    <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
+    <link href="dist/css/ripples.min.css" rel="stylesheet">
+
+
+    <link href="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+   <body>
+  <div class="navbar navbar-inverse affix">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" >AgendApp</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-inverse-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="javascript:void(0)">Agendar cita</a></li>
+                    <li><a href="javascript:void(0)">Agendar cita con especialista</a></li>
+                  </ul>
+                </div>
+              </div>
+  </div>
+  <div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <form>
+        <h3 class="panel-title">Asignar cita</h3>
+      </div>
+      <div class="panel-body">
+      <div class="form-group col-md-6">
+        <label for="regional" class=" control-label">Regional</label>
+
+                      <div>
+                        <select id="regional" class="form-control">
+                          <option>Norte</option>
+                          <option>Sur</option>
+                          <option>Oriente</option>
+                          <option>Occidente</option>
+                          <option>Nororiente</option>
+                        </select>
+                      </div>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="esm" class="control-label">ESM</label>
+
+                      <div>
+                        <select id="regional" class="form-control">
+                          <option>GRUPO AÉREO DEL ORIENTE</option>
+                          <option>otro</option>
+                          <option>otro más</option>
+                          <option>y otro</option>
+                         
+                        </select>
+                      </div>
+        </div>
+
+        <div class="form-group col-md-6">
+        <label for="profesional" class="control-label">Profesional</label>
+
+                      <div>
+                        <select id="regional" class="form-control">
+                          <option>Deisy Ortíz</option>
+                          <option>Ricardo Albarracín</option>
+                          <option>Leonardo Pardo</option>
+                         
+                        </select>
+                      </div>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="especialidad" class="control-label">Especialidad</label>
+
+                      <div>
+                        <select id="regional" class="form-control">
+                          <option>Medicina general</option>
+                          <option>Odontología</option>
+                        </select>
+                      </div>
+        </div>
+       
+
+        <div class="form-group col-md-6">
+          <label for="from" class="col-md-2 control-label">Desde</label>
+          <input type="text" id="from" name="from" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="to" class="col-md-2 control-label">Hasta  </label>
+          <input type="text" id="to" name="to" class="form-control">
+        </div>
+
+        
+
+
+
+
+        
+    <a onclick="Mostrar()" class="btn btn-raised btn-info col-md-12">Consultar disponibilidad</a>  
+        </form>
+        </div>
+         </div>
+      <div class="list-group-separator"></div>
+    </div>
+      </div>
+    </div>
+      
+    </div>
+    <br>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="dist/js/ripples.min.js"></script>
+      <script src="dist/js/material.min.js"></script>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      var dateFormat = "mm/dd/yy",
+        from = $( "#from" )
+          .datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2
+          })
+          .on( "change", function() {
+            to.datepicker( "option", "minDate", getDate( this ) );
+          }),
+        to = $( "#to" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 2
+        })
+        .on( "change", function() {
+          from.datepicker( "option", "maxDate", getDate( this ) );
+        });
+   
+      function getDate( element ) {
+        var date;
+        try {
+          date = $.datepicker.parseDate( dateFormat, element.value );
+        } catch( error ) {
+          date = null;
+        }
+   
+        return date;
+      }
+    } );
+    </script>
+    <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
+
+    
+    </body>
+    </html>

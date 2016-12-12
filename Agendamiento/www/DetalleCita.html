@@ -1,0 +1,154 @@
+  <!DOCTYPE html>
+  <html>
+  <!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <title>Bootstrap Material</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Material Design -->
+    <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
+    <link href="dist/css/ripples.min.css" rel="stylesheet">
+
+
+    <link href="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+ <div class="navbar navbar-inverse affix">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" >AgendApp</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-inverse-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="javascript:void(0)">Agendar cita</a></li>
+                    <li><a href="javascript:void(0)">Agendar cita con especialista</a></li>
+                  </ul>
+                </div>
+              </div>
+  </div>
+  <div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Detalle de la cita</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+     <div class="col-md-6">    
+         <div class="form-group">
+            <label class"control-label">Fecha de la solicitud</label>
+                 <div class='input-group date' id='datetimepicker2'>
+                     <input id="FechaSolicitud" type='text' class="form-control" readonly="readonly"/>
+                     <span class="input-group-addon">
+                         <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                 </div>
+         </div>
+     </div>
+
+     <div class="col-md-6">     
+       <div class="form-group">
+           <label class"control-label">Fecha de la cita</label>
+                 <div class='input-group date' id='datetimepicker2'>
+                     <input id="FechaCita" type='text' class="form-control" readonly="readonly"/>
+                     <span class="input-group-addon">
+                         <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                 </div>
+       </div>    
+    </div>
+
+     <div class="col-md-6">     
+         <div class="form-group">                
+          <label class"control-label"> Médico</label>
+             <input type='text' class="form-control" readonly="readonly" id="medico"/>                             
+         </div>
+     </div>
+
+      <div class="col-md-6">    
+         <div class="form-group">    
+          <label class"control-label">Estado de la cita</label>            
+              <input type='text' class="form-control" readonly="readonly" id="estado"/>                             
+         </div>
+      </div>
+
+      <div class="col-md-6">
+       <label class"control-label">ESM </label>
+          <div class="form-group">                
+                <input type='text' class="form-control" readonly="readonly" id="esm"/>                             
+          </div>
+       </div>
+
+        <div class="col-md-6">     
+          <div class="form-group">         
+           <label class"control-label"> Especialidad </label>       
+                 <input type='text' class="form-control" readonly="readonly" id="especialidad"/>                             
+              </div>
+       </div>
+
+       <div class="col-md-6">     
+          <div class="form-group">         
+           <label class"control-label"> Tipo de cita </label>       
+                 <input type='text' class="form-control" readonly="readonly" id="tipocita"/>                             
+              </div>
+       </div>
+
+       <div class="col-md-6">     
+          <div class="form-group">         
+             <label class"control-label"> Tipo de asignación </label>       
+                 <input type='text' class="form-control" readonly="readonly" id="tipoasignacion"/>                             
+          </div>
+       </div>
+    </div>
+       <div class="text-right">
+       <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
+    </div>
+  </div>
+    
+  </div>
+  <br>
+
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script src="dist/js/ripples.min.js"></script>
+  <script src="dist/js/material.min.js"></script>
+  <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
+
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
+  <script>
+    $(function () {
+      $.material.init();
+      
+      $("#FechaSolicitud").val("10/09/2016");
+      $("#FechaCita").val("26/12/2016");
+      $("#medico").val("Rafael");
+      $("#estado").val("Pendente");
+      $("#esm").val("Comando aéreo de comabate No 02");
+      $("#especialidad").val("Medicina general");
+      $("#tipocita").val("General");
+      $("#tipoasignacion").val("Especial");
+     
+    });    
+  </script>
+  </body>
+  </html>
