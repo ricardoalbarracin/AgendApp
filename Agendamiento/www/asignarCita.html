@@ -6,7 +6,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-      <title>Bootstrap Material</title>
+      <title>Agendamiento</title>
 
     <link rel="stylesheet" href="css/style.css">
     
@@ -39,8 +39,10 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
                   <ul class="nav navbar-nav">
-                    <li><a href="javascript:void(0)">Agendar cita</a></li>
-                    <li><a href="javascript:void(0)">Agendar cita con especialista</a></li>
+                    <li><a href="asignarCita.html">Asignar cita</a></li>
+                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
+                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
+                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
                   </ul>
                 </div>
               </div>
@@ -112,14 +114,13 @@
           <input type="text" id="to" name="to" class="form-control">
         </div>
 
-        
-
-
-
-
-        
-    <a onclick="Mostrar()" class="btn btn-raised btn-info col-md-12">Consultar disponibilidad</a>  
+             <div class="text-right">
+                <input class="btn btn-primary" type="button" value="Consultar disponibilidad" onclick="mostrarDisponibilidad()"> 
+             </div>
         </form>
+               <div class="panel-body">
+                  <div class="list-group list-group-no-icon" id="citasAgendadas" ></div>
+             </div>
         </div>
          </div>
       <div class="list-group-separator"></div>
@@ -130,10 +131,13 @@
     </div>
     <br>
 
+    <script src="js/Disponibilidad.js"></script>
+
+
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="dist/js/ripples.min.js"></script>
-      <script src="dist/js/material.min.js"></script>
+    <script src="dist/js/material.min.js"></script>
     
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
