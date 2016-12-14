@@ -43,11 +43,11 @@
         <div class="well infobox">
 		  
 			<div class="form-group label-floating">
-			  <label  class="control-label" for="focusedInput2">Email</label>
-			  <input  type="email" class="form-control" id="focusedInput2" type="text">
+			  <label  class="control-label" for="EmailInput">Email</label>
+			  <input  type="email" class="form-control" id="EmailInput" type="text">
 			  <p class="help-block">Debe ingresar un email valido.</p>
 			</div>
-		  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+		  <input type="password" class="form-control" id="ClaveInput" placeholder="Password">
           <a onclick="Mostrar()" class="btn btn-raised btn-info col-md-12">Ingresa</a>
         </div>
       </div>
@@ -82,18 +82,19 @@
   });
   
   function Mostrar() {
- 
+ debugger;
+  var correo=$('#EmailInput')[0];
     $.ajax({
     type: 'POST',
     data: {
-      parametro1: $('#nombre').val(),
-      parametro2: $('#email').val()
+      Email:correo.value ,
+      Clave: $('#ClaveInput')[0].value
     },
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/UserValidate',
+    url: 'http://localhost:65149/account/UserValidatePost',
     dataType: 'json',   
     success: function(response) {
       debugger;
-      alert("hola "+response.DataObject.Nombre)
+      alert("hola "+response.DataObject.Nombres)
       window.location="Agenda.html";
 
     },
