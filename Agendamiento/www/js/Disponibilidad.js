@@ -52,9 +52,9 @@
 
   function verDetalle(e)
   {
-      //alert(e);
-      console.log(e);
-      alert(e.value);
+     // console.log(e);
+     
+     alert(e.Titulo);
   }
 
   function mostrarTabla(rows,padre,funcion) {
@@ -75,10 +75,13 @@
         
         codHtml= codHtml.format(item.Titulo,item.Descripcion);
         var elemento = $.parseHTML(codHtml);
-    
         var groupitem = document.createElement('a');
         groupitem.setAttribute('class', 'list-group-item' );
-       
+        var funcion_=funcion + '(item); ';
+        
+        //groupitem.setAttribute('onclick',  funcion_);
+        groupitem.onclick=function(){eval(funcion_);};
+
 
         elemento.forEach(function(itemHtml){groupitem.appendChild (itemHtml);});        
         
@@ -86,11 +89,8 @@
     }
   
 
-  function ConfirmarCita(){
-    alert("Hola leo");
-  }
   function Mostrar() {
-  window.location="Agenda.html";
+  
     $.ajax({
     type: 'POST',
     data: {
