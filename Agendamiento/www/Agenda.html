@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Bootstrap Material</title>
+   <title>Agendamiento</title>
 
    <link rel="stylesheet" href="css/style.css"> 
 
@@ -36,11 +36,13 @@
 		</div>
 		<div class="navbar-collapse collapse navbar-inverse-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="DetalleCitaAutorizada.html">Detalle cita autorizada</a></li>
-          <li><a href="DetalleCita.html">Detalle de cita</a></li>
           <li><a href="asignarCita.html">Asignar cita</a></li>
+          <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
+				  <li><a href="DetalleCitaAutorizada.html">Detalle cita autorizada</a></li>
+          <li><a href="DetalleCita.html">Detalle de cita</a></li>
           <li><a href="CancelarCita.html">Cancelar cita</a></li>
           <li><a href="DatosBasicos.html">Datos básicos</a></li>
+          <li><a href="CambiarContrasena.html">Cambiar contraseña</a></li>
 			</ul>
 		</div>
 	</div>
@@ -56,7 +58,10 @@
 </div>
   
 </div>
-<br>
+
+
+
+<script src="js/Disponibilidad.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -64,110 +69,14 @@
 <script src="dist/js/ripples.min.js"></script>
 <script src="dist/js/material.min.js"></script>
 <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
-
-
 <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
+
+
 <script>
-  $(function () {
-    $.material.init();
-    var datos = [
-      {
-        Titulo:"Maria Angelica Gonzales Rojas",
-		Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        Titulo:"hola2",
-		Descripcion:"mundo2"
-      },
-      {
-        Titulo:"hola3",
-		Descripcion:"mundo3"
-      },
-      {
-        Titulo:"hola4",
-		Descripcion:"mundo4"
-      }
-	  ,
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      },
-      {
-        Titulo:"marco",
-		Descripcion:"deisy"
-      }
-    ];
-	mostrarTabla(datos,'citasAgendadas');
-   
-  });
-  function mostrarTabla(rows,padre) {
-		padreTag = document.getElementById(padre);
-		rows.forEach(function(item){crearItem(item,padreTag)});
-	}
-	String.prototype.format = function() {
-		var newStr = this, i = 0;
-		while (/%s/.test(newStr))
-			newStr = newStr.replace("%s", arguments[i++])
+    $(function () { 
+     mostrarDisponibilidad();
+    });
+  </script>
 
-		return newStr;
-	}
-	
-	function crearItem(item,padreTag) {
-		var codHtml=
-		'<div class="row-content"><div class="action-secondary"><i class="material-icons">delete</i><div>  </div><i class="material-icons">info</i></div><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></div><div class="list-group-separator"></div>'
-		
-		codHtml= codHtml.format(item.Titulo,item.Descripcion);
-		var elemento = $.parseHTML(codHtml);
-	
-		var groupitem = document.createElement('a');
-		groupitem.setAttribute('class', 'list-group-item' );
-		groupitem.setAttribute('href', '#' );
-		
-		elemento.forEach(function(itemHtml){groupitem.appendChild (itemHtml);});		
-		
-		padreTag.appendChild(groupitem);
-	}
-  
-  function Mostrar() {
-  window.location="Agenda.html";
-    $.ajax({
-    type: 'POST',
-    data: {
-      parametro1: $('#nombre').val(),
-      parametro2: $('#email').val()
-    },
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/UserValidate',
-    dataType: 'json',   
-    success: function(response) {
-      alert("hola "+response.DataObject.Nombre)
-      window.location="Agenda.html";
-
-    },
-    error: function(msg){
-      $('#boton_enviar').attr('disabled', false);
-    }
-   });
-}
-</script>
 </body>
 </html>
