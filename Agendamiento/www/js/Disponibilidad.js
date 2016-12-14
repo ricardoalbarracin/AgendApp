@@ -47,12 +47,19 @@
         Descripcion:"deisy"
       }
     ];
-    mostrarTabla(datos,'citasAgendadas');
+    mostrarTabla(datos,'citasAgendadas','verDetalle');
  }
 
-  function mostrarTabla(rows,padre) {
+  function verDetalle(e)
+  {
+      //alert(e);
+      console.log(e);
+      alert(e.value);
+  }
+
+  function mostrarTabla(rows,padre,funcion) {
         padreTag = document.getElementById(padre);
-        rows.forEach(function(item){crearItem(item,padreTag)});
+        rows.forEach(function(item){crearItem(item,padreTag,funcion)});
     }
     String.prototype.format = function() {
         var newStr = this, i = 0;
@@ -62,7 +69,7 @@
         return newStr;
     }
     
-    function crearItem(item,padreTag) {
+    function crearItem(item,padreTag,funcion) {
         var codHtml=
         '<div class="row-content"><div class="action-secondary"><i class="material-icons">delete</i><div>  </div><i class="material-icons">info</i></div><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></div><div class="list-group-separator"></div>'
         
@@ -71,13 +78,17 @@
     
         var groupitem = document.createElement('a');
         groupitem.setAttribute('class', 'list-group-item' );
-        groupitem.setAttribute('href', '#' );
-        
+       
+
         elemento.forEach(function(itemHtml){groupitem.appendChild (itemHtml);});        
         
         padreTag.appendChild(groupitem);
     }
   
+
+  function ConfirmarCita(){
+    alert("Hola leo");
+  }
   function Mostrar() {
   window.location="Agenda.html";
     $.ajax({
