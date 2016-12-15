@@ -53,7 +53,7 @@ function mostrarDisponibilidad(id) {
         var codHtml=
         '<div class="row-content"><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></div><div class="list-group-separator"></div> '
         
-        codHtml= codHtml.format(item.especialidad,item.Descripcion);
+        codHtml= codHtml.format(item.Titulo,item.Descripcion);
         var elemento = $.parseHTML(codHtml);
         var groupitem = document.createElement('a');
         groupitem.setAttribute('class', 'list-group-item' );
