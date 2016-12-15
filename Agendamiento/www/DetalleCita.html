@@ -53,18 +53,7 @@
       <h3 class="panel-title">Detalle de la cita</h3>
     </div>
     <div class="panel-body">
-      <div class="row">
-     <div class="col-md-6">    
-         <div class="form-group">
-            <label class"control-label">Fecha de la solicitud</label>
-                 <div class='input-group date' id='datetimepicker2'>
-                     <input id="FechaSolicitud" type='text' class="form-control" readonly="readonly"/>
-                     <span class="input-group-addon">
-                         <span class="glyphicon glyphicon-calendar"></span>
-                     </span>
-                 </div>
-         </div>
-     </div>
+      <div class="row">   
 
      <div class="col-md-6">     
        <div class="form-group">
@@ -92,9 +81,9 @@
          </div>
       </div>
 
-      <div class="col-md-6">
-       <label class"control-label">ESM </label>
-          <div class="form-group">                
+      <div class="col-md-6">     
+          <div class="form-group">  
+            <label class"control-label">ESM </label>              
                 <input type='text' class="form-control" readonly="readonly" id="esm"/>                             
           </div>
        </div>
@@ -106,18 +95,20 @@
               </div>
        </div>
 
-       <div class="col-md-6">     
+      <div class="col-md-6">     
           <div class="form-group">         
-           <label class"control-label"> Tipo de cita </label>       
-                 <input type='text' class="form-control" readonly="readonly" id="tipocita"/>                             
+           <label class"control-label"> Motivo cancelación </label>       
+                 <input type='text' class="form-control" readonly="readonly" id="motivocancela"/>                             
               </div>
        </div>
 
-       <div class="col-md-6">     
+      <div class="col-md-6">     
           <div class="form-group">         
-             <label class"control-label"> Tipo de asignación </label>       
-                 <input type='text' class="form-control" readonly="readonly" id="tipoasignacion"/>                             
-          </div>
+           <label class"control-label"> Justificación cancelación </label>       
+                 <input type='text' class="form-control" readonly="readonly" id="justificacion"/>                             
+              </div>
+       </div>
+
        </div>
     </div>
        <div class="text-right">
@@ -138,17 +129,37 @@
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
   <script>
+   
     $(function () {
-      $.material.init();
+      $.material.init();      
+        debugger;
+       
+        $.ajax({
+        type: 'POST',
+        data: {
+          Cita: 1
+        },
+        url: 'http://localhost:65149/account/GetDetalleCita',
+        dataType: 'json',   
+        success: function(response) {
+        
+        debugger;
+
+          $("#FechaCita").val(response.DataObject.Fecha);
+          $("#medico").val(response.DataObject.Medico);
+          $("#estado").val(response.DataObject.Estado);
+          $("#esm").val(response.DataObject.Esm);
+          $("#especialidad").val(response.DataObject.Especialidad);        
+          $("#motivocancela").val(response.DataObject.Motivo); 
+          $("#justificacion").val(response.DataObject.Justificacion); 
+
+        },
+        error: function(msg){
+          $('#boton_enviar').attr('disabled', false);
+        }
+       });
+ 
       
-      $("#FechaSolicitud").val("10/09/2016");
-      $("#FechaCita").val("26/12/2016");
-      $("#medico").val("Rafael");
-      $("#estado").val("Pendente");
-      $("#esm").val("Comando aéreo de comabate No 02");
-      $("#especialidad").val("Medicina general");
-      $("#tipocita").val("General");
-      $("#tipoasignacion").val("Especial");
      
     });    
   </script>
