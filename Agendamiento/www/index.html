@@ -48,7 +48,7 @@
 			  <p class="help-block">Debe ingresar un email valido.</p>
 			</div>
 		  <input type="password" class="form-control" id="ClaveInput" placeholder="Password">
-          <a onclick="Mostrar()" class="btn btn-raised btn-info col-md-12">Ingresa</a>
+          <a onclick="Mostrar()" id="boton_enviar" class="btn btn-raised btn-info col-md-12">Ingresa</a>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
   });
   
   function Mostrar() {
- debugger;
+ $('#boton_enviar').attr('disabled', true);
   var correo=$('#EmailInput')[0];
     $.ajax({
     type: 'POST',
@@ -95,7 +95,8 @@
     success: function(response) {
       debugger;
       alert("hola "+response.DataObject.Nombres)
-      window.location="Agenda.html";
+      window.location="Agenda.html?id=1";
+	  $('#boton_enviar').attr('disabled', false);
 
     },
     error: function(msg){
