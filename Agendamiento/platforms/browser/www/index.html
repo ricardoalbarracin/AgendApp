@@ -93,7 +93,7 @@
     url: 'http://localhost:65149/account/UserValidatePost',
     dataType: 'json',   
     success: function(response) {
-
+      debugger;
       alert("hola "+response.DataObject.Nombres)
       window.location="Agenda.html?id=1";
 	  $('#boton_enviar').attr('disabled', false);
