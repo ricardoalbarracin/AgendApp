@@ -1,73 +1,24 @@
-
- function mostrarDisponibilidad() {
- var datos = [
-      {
-        ESM:"Grupo aéreo 1",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo 2",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo 3",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo 4",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      }
-      ,
-      {
-        ESM:"Grupo aéreo5",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo6",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo7",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      },
-      {
-        ESM:"Grupo aéreo8",
-        fecha:"13/04/1993",
-        medico:"Isaac Asimov",
-        especialidad:"Medicina general",
-        paciente:"Daniela Lopez",
-        Descripcion:"Hospital XXXX consultorio XXXX 12/12/2016 13:45"
-      }
-    ];
-    mostrarTabla(datos,'citasAgendadas','verDetalle');
+function mostrarDisponibilidad(id) {
+  var datos = [];
+ $.ajax({
+    type: 'POST',
+    data: {
+      Idafiliado:id 
+    },
+    url: 'http://localhost:65149/account/GetCitasAsignadas',
+    dataType: 'json',   
+    success: function(response) {
+      for (var i = 0; i < response.DataObject.length; i++) {
+		var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
+		datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+	    }
+		mostrarTabla(datos,'citasAgendadas','verDetalle');
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+    
  }
 
   function verDetalle(e)
@@ -81,7 +32,7 @@
       $("#especialidad").val(e.especialidad);
        //$("#botondelModal").trigger("click");
          
-         jQuery.noConflict(); 
+         //jQuery.noConflict(); 
          $('#myModal').modal('show');
 
   }
