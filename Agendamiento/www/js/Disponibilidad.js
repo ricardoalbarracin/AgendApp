@@ -21,6 +21,51 @@ function mostrarDisponibilidad(id) {
     
  }
 
+ function mostrarDisponibilidadAgenda() {
+  debugger;
+  var datos = [];
+ $.ajax({
+    type: 'POST',   
+    url: 'http://localhost:65149/account/GetCitasDisponibles',
+    dataType: 'json',   
+    success: function(response) {
+      for (var i = 0; i < response.DataObject.length; i++) {
+    var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
+    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+      }
+    mostrarTabla(datos,'citasAgendadas','verDetalle');
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+    
+ }
+
+ function mostrarDisponibilidadAgendaAutorizada() {
+  debugger;
+  var datos = [];
+ $.ajax({
+    type: 'POST', 
+     data: {
+      Autorizacion:'AUT01' 
+    },  
+    url: 'http://localhost:65149/account/GetCitasDisponiblesAutorizadas',
+    dataType: 'json',   
+    success: function(response) {
+      for (var i = 0; i < response.DataObject.length; i++) {
+    var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
+    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+      }
+    mostrarTabla(datos,'citasAgendadas','verDetalle');
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+    
+ }
+
   function verDetalle(e)
   {
      // console.log(e);
