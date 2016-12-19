@@ -5,7 +5,7 @@ function mostrarDisponibilidad(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.comaccount/GetCitasAsignadas',
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -26,7 +26,7 @@ function mostrarDisponibilidad(id) {
   var datos = [];
  $.ajax({
     type: 'POST',   
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.comaccount/GetCitasDisponibles',
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
