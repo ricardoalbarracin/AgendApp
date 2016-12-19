@@ -5,7 +5,7 @@ function mostrarDisponibilidad(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://localhost:65149/account/GetCitasAsignadas',
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.comaccount/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -26,7 +26,7 @@ function mostrarDisponibilidad(id) {
   var datos = [];
  $.ajax({
     type: 'POST',   
-    url: 'http://localhost:65149/account/GetCitasDisponibles',
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.comaccount/GetCitasDisponibles',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -50,7 +50,7 @@ function mostrarDisponibilidad(id) {
      data: {
       Autorizacion:'AUT01' 
     },  
-    url: 'http://localhost:65149/account/GetCitasDisponiblesAutorizadas',
+    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
