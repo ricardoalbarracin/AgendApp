@@ -70,13 +70,15 @@ function mostrarDisponibilidad(id) {
 
   function verDetalle(e)
   {
-     // console.log(e);
+
      
     // alert(e.medico);
-      $("#medico").val(e.medico);
-      $("#fecha").val(e.fecha);
-      $("#ESM").val(e.ESM);
-      $("#especialidad").val(e.especialidad);
+
+      $("#Titulo").empty();
+      $("#Descripcion").empty();
+      $("#Titulo").append(e.Titulo);
+      $("#Descripcion").append(e.Descripcion);
+
        //$("#botondelModal").trigger("click");
          
          //jQuery.noConflict(); 
