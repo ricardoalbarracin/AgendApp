@@ -12,7 +12,7 @@ function mostrarDisponibilidad(id) {
 		var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
 		datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
 	    }
-		mostrarTabla(datos,'citasAgendadas','verDetalleCita');
+		mostrarTabla(datos,'citasAgendadas','verDetalle');
     },
     error: function(msg){
       $('#boton_enviar').attr('disabled', false);
@@ -22,20 +22,12 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgenda() {
-
+  debugger;
   var datos = [];
  $.ajax({
     type: 'POST',   
-    data: {
-      Esm: $("#regional").val(),
-      Profesional: $("#profesional").val(),
-      Especialidad: $("#especialidad"),
-      FechaInicial: $("#from"),
-      FechaFinal: $("#to")
-    }, 
-
     url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
-    dataType: 'json',    
+    dataType: 'json',   
     success: function(response) {
       $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -52,6 +44,7 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgendaAutorizada() {
+  debugger;
   var datos = [];
  $.ajax({
     type: 'POST', 
@@ -78,31 +71,27 @@ function mostrarDisponibilidad(id) {
   function verDetalle(e)
   {
 
+     
     // alert(e.medico);
+<<<<<<< HEAD
     debugger;
+      $("#medico").val(e.medico);
+      $("#fecha").val(e.fecha);
+      $("#ESM").val(e.ESM);
+      $("#especialidad").val(e.especialidad);
+=======
+
       $("#Titulo").empty();
       $("#Descripcion").empty();
       $("#Titulo").append(e.Titulo);
       $("#Descripcion").append(e.Descripcion);
 
+>>>>>>> 0b0536387912fc20f99a6e3431382d3de20bbe2e
        //$("#botondelModal").trigger("click");
          
          //jQuery.noConflict(); 
-         var modal_=$('#myModal');
+         var moda_=$('#myModal');
          modal_.modal('show');
-
-  }
-
-  function verDetalleCita(e)
-  {
-      $("#Titulo").empty();
-      $("#Descripcion").empty();
-      $("#Titulo").append(e.Titulo);
-      $("#Descripcion").append(e.Descripcion);
-      $("#IdCita").append(e.Id);
-      
-      var modal_=$('#myModal');
-      modal_.modal('show');
 
   }
 

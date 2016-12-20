@@ -1,90 +1,94 @@
 <!DOCTYPE html>
 <html>
-<!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-   <title>Agendamiento</title>
-
-   <link rel="stylesheet" href="css/style.css"> 
-
-  <!-- Material Design fonts -->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Bootstrap -->
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Material Design -->
-  <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
-  <link href="dist/css/ripples.min.css" rel="stylesheet">
-  <link href="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-<div class="navbar navbar-inverse affix">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" >AgendApp</a>
-		</div>
-		<div class="navbar-collapse collapse navbar-inverse-collapse">
-			<ul class="nav navbar-nav">
-          <li><a href="asignarCita.html">Asignar cita</a></li>
-          <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-				  <li><a href="DetalleCitaAutorizada.html">Detalle cita autorizada</a></li>
-          <li><a href="DetalleCita.html">Detalle de cita</a></li>
-          <li><a href="CancelarCita.html">Cancelar cita</a></li>
-          <li><a href="DatosBasicos.html">Datos básicos</a></li>
-          <li><a href="CambiarContrasena.html">Cambiar contraseña</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="container">
-<div class="panel panel-info" style="height=100px;">
-  <div class="panel-heading">
-    <h3 class="panel-title">Panel info</h3>
-  </div>
-	<div class="panel-body">
-		<div class="list-group list-group-no-icon" id="citasAgendadas" ></div>
-	</div>
-</div>
-  
-</div>
-
-
-
-<script src="js/Disponibilidad.js"></script>
-
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<script src="dist/js/ripples.min.js"></script>
-<script src="dist/js/material.min.js"></script>
-<script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
-
-
-<script>
-    $(function () { 
-     mostrarDisponibilidad(getUrlVars()["id"]);
-	
-    });
-	function getUrlVars() {
-		var vars = {};
-		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-		vars[key] = value;
-		});
-		return vars;
-	}
-  </script>
-
-</body>
+   <!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Agendamiento</title>
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Material Design fonts -->
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Bootstrap -->
+      <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap Material Design -->
+      <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
+      <link href="dist/css/ripples.min.css" rel="stylesheet">
+      <link href="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+   </head>
+   <body>
+      <div class="navbar navbar-inverse affix">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" >AgendApp</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-inverse-collapse">
+               <ul class="nav navbar-nav">
+                  <li><a href="asignarCita.html">Asignar cita</a></li>
+                  <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
+                  <li><a href="DetalleCitaAutorizada.html">Detalle cita autorizada</a></li>
+                  <li><a href="DetalleCita.html">Detalle de cita</a></li>
+                  <li><a href="CancelarCita.html">Cancelar cita</a></li>
+                  <li><a href="DatosBasicos.html">Datos básicos</a></li>
+                  <li><a href="CambiarContrasena.html">Cambiar contraseña</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="panel panel-info" style="height=100px;">
+            <div class="panel-heading">
+               <h3 class="panel-title">Citas agendadas</h3>
+            </div>
+            <div class="panel-body">
+               <div class="list-group list-group-no-icon" id="citasAgendadas" ></div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Detalle de cita</h4>
+               </div>
+               <div id="modalConfirmacion" class="modal-body">
+                  <div class="form-group col-md-6"> <label id="Titulo">Titulo:</label> </div>
+                  <div class="form-group col-md-6">  <label id="Descripcion">Descripción:</label></input></div>
+                  <div id="IdCita" style="display: none;"></div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn  btn-raised btn-default" data-dismiss="modal">Cerrar</button>
+                     <button type="button" class="btn  btn-raised btn-danger" onclick="alert($("#IdCita")[0].value)">Cancelar Cita</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/Disponibilidad.js"></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="dist/js/ripples.min.js"></script>
+      <script src="dist/js/material.min.js"></script>
+      <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
+      <script>
+         $(function () { 
+          mostrarDisponibilidad(getUrlVars()["id"]);
+         
+         });
+         function getUrlVars() {
+         var vars = {};
+         var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+         vars[key] = value;
+         });
+         return vars;
+         }
+      </script>
+   </body>
 </html>
