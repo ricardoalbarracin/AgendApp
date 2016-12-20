@@ -29,6 +29,7 @@ function mostrarDisponibilidad(id) {
     url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
     dataType: 'json',   
     success: function(response) {
+      $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
     var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
     datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
@@ -53,6 +54,7 @@ function mostrarDisponibilidad(id) {
     url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
+      $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
     var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
     datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
@@ -68,14 +70,15 @@ function mostrarDisponibilidad(id) {
 
   function verDetalle(e)
   {
-     // console.log(e);
+
      
     // alert(e.medico);
     debugger;
-      $("#medico").val(e.medico);
-      $("#fecha").val(e.fecha);
-      $("#ESM").val(e.ESM);
-      $("#especialidad").val(e.especialidad);
+      $("#Titulo").empty();
+      $("#Descripcion").empty();
+      $("#Titulo").append(e.Titulo);
+      $("#Descripcion").append(e.Descripcion);
+
        //$("#botondelModal").trigger("click");
          
          //jQuery.noConflict(); 
