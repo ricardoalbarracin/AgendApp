@@ -22,12 +22,20 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgenda() {
-  debugger;
+
   var datos = [];
  $.ajax({
     type: 'POST',   
+    data: {
+      Esm: $("#regional").val(),
+      Profesional: $("#profesional").val(),
+      Especialidad: $("#especialidad"),
+      FechaInicial: $("#from"),
+      FechaFinal: $("#to")
+    }, 
+
     url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
-    dataType: 'json',   
+    dataType: 'json',    
     success: function(response) {
       $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -44,7 +52,6 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgendaAutorizada() {
-  debugger;
   var datos = [];
  $.ajax({
     type: 'POST', 
@@ -71,7 +78,6 @@ function mostrarDisponibilidad(id) {
   function verDetalle(e)
   {
 
-     
     // alert(e.medico);
 
       $("#Titulo").empty();
