@@ -71,6 +71,7 @@ function mostrarDisponibilidad(id) {
      // console.log(e);
      
     // alert(e.medico);
+    debugger;
       $("#medico").val(e.medico);
       $("#fecha").val(e.fecha);
       $("#ESM").val(e.ESM);
@@ -78,7 +79,8 @@ function mostrarDisponibilidad(id) {
        //$("#botondelModal").trigger("click");
          
          //jQuery.noConflict(); 
-         $('#myModal').modal('show');
+         var moda_=$('#myModal');
+         modal_.modal('show');
 
   }
 
