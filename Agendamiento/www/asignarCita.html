@@ -89,7 +89,7 @@
             </select>
           </div>
         </div>       
-
+       <div id="IdAfiliado" style="display: none;"></div> 
         <div class="form-group col-md-6">
           <label for="from" class="col-md-2 control-label">Desde</label>
           <input type="text" id="from" name="from" class="form-control">
@@ -104,28 +104,28 @@
              </div>
         </form>
                <div class="panel-body">
-                  <div class="list-group list-group-no-icon" id="citasAgendadas" ></div>
+                  <div class="list-group list-group-no-icon" id="citasDisponibles" ></div>
              </div>
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmar cita</h4>
-      </div>
-      <div id="modalConfirmacion" class="modal-body">
-
-      <div class="form-group col-md-6"> <label id="Titulo">Titulo:</label> </div>
-       <div class="form-group col-md-6">  <label id="Descripcion">Descripción:</label></input></div>
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Confirmar</button>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Confirmar cita</h4>
+                </div>
+                <div id="modalConfirmacion" class="modal-body">       
+                <div class="form-group col-md-6"> <label id="Titulo">Titulo:</label> </div>
+                 <div class="form-group col-md-6">  <label id="Descripcion">Descripción:</label></input></div>
+               <div id="IdAgenda" style="display: none;"></div>   
+             
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary"  onclick="confirmarCita()">Confirmar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
          </div>
       <div class="list-group-separator"></div>
@@ -147,6 +147,9 @@
      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
     $( function() {
+
+       $("#IdAfiliado").val(getUrlVars()["IdAfiliado"]);
+
       var dateFormat = "mm/dd/yy",
         from = $( "#from" )
           .datepicker({
@@ -176,11 +179,17 @@
    
         return date;
       }
+
+       function getUrlVars() {
+         var vars = {};
+         var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+         vars[key] = value;
+         });
+         return vars;
+      }
     } );
     </script>
     <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>  
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
-
-    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>    
     </body>
     </html>
