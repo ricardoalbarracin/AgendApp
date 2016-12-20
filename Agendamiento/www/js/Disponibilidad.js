@@ -1,4 +1,4 @@
-function mostrarDisponibilidad(id) {
+function mostrarCitasAgendadas(id) {
   var datos = [];
  $.ajax({
     type: 'POST',
@@ -22,19 +22,26 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgenda() {
-  debugger;
   var datos = [];
+
  $.ajax({
     type: 'POST',   
     url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
-    dataType: 'json',   
+      Esm: $("#regional").val(),
+      Profesional: $("#profesional").val(),
+      Especialidad: $("#especialidad").val()     
+    }, 
+
+    url: 'http://localhost:65149//account/GetCitasDisponibles',
+    dataType: 'json',    
     success: function(response) {
+ 
       $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
     var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
-    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle, Agenda: response.DataObject[i].Idagenda });
       }
-    mostrarTabla(datos,'citasAgendadas','verDetalle');
+    mostrarTabla(datos,'citasDisponibles','verDetalle');
     },
     error: function(msg){
       $('#boton_enviar').attr('disabled', false);
@@ -44,12 +51,12 @@ function mostrarDisponibilidad(id) {
  }
 
  function mostrarDisponibilidadAgendaAutorizada() {
-  debugger;
+
   var datos = [];
  $.ajax({
     type: 'POST', 
      data: {
-      Autorizacion:'AUT01' 
+      Autorizacion:$("#autorizacion").val()
     },  
     url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
@@ -57,9 +64,9 @@ function mostrarDisponibilidad(id) {
       $( "#citasAgendadas" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
     var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
-    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle, Agenda: response.DataObject[i].Idagenda});
       }
-    mostrarTabla(datos,'citasAgendadas','verDetalle');
+    mostrarTabla(datos,'citasAutorizadasDisponibles','verDetalle');
     },
     error: function(msg){
       $('#boton_enviar').attr('disabled', false);
@@ -71,7 +78,6 @@ function mostrarDisponibilidad(id) {
   function verDetalle(e)
   {
 
-     
     // alert(e.medico);
     debugger;
       $("#Titulo").empty();
@@ -79,6 +85,7 @@ function mostrarDisponibilidad(id) {
       $("#Titulo").append(e.Titulo);
       $("#Descripcion").append(e.Descripcion);
 
+      $("#IdAgenda").val(e.Agenda);
        //$("#botondelModal").trigger("click");
          
          //jQuery.noConflict(); 
@@ -155,3 +162,27 @@ function mostrarDisponibilidad(id) {
     }
    });
 }
+
+function confirmarCita(){
+
+   debugger;
+   
+    var datos = [];
+    $.ajax({
+    type: 'POST', 
+     data: {
+      Agenda:$("#IdAgenda").val(),
+      IdAfiliado: $("#IdAfiliado").val()
+    },  
+    url: 'http://localhost:65149//account/ConfirmarCita',
+    dataType: 'json',   
+    success: function(response) {
+      alert("exito");
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+}
+
+
