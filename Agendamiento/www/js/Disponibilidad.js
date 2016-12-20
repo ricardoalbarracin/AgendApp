@@ -5,12 +5,12 @@ function mostrarDisponibilidad(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
+    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
 		var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
-		datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle});
+		datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle,Id:response.DataObject[i].Id});
 	    }
 		mostrarTabla(datos,'citasAgendadas','verDetalleCita');
     },
@@ -26,7 +26,7 @@ function mostrarDisponibilidad(id) {
   var datos = [];
  $.ajax({
     type: 'POST',   
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
+    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
     dataType: 'json',   
     success: function(response) {
       $( "#citasAgendadas" ).empty();
@@ -51,7 +51,7 @@ function mostrarDisponibilidad(id) {
      data: {
       Autorizacion:'AUT01' 
     },  
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
+    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
       $( "#citasAgendadas" ).empty();
@@ -89,14 +89,17 @@ function mostrarDisponibilidad(id) {
 
   function verDetalleCita(e)
   {
+    debugger;
       $("#Titulo").empty();
       $("#Descripcion").empty();
       $("#Titulo").append(e.Titulo);
       $("#Descripcion").append(e.Descripcion);
-      $("#IdCita").append(e.Id);
+      var idCita=$("#IdCita");
+      idCita.value=e.Id;
       
       var modal_=$('#myModal');
-      modal_.modal('show');
+      //modal_.modal('show');
+      window.location="DetalleCita.html?id="+ e.Id;
 
   }
 
@@ -140,7 +143,7 @@ function mostrarDisponibilidad(id) {
       parametro1: $('#nombre').val(),
       parametro2: $('#email').val()
     },
-    url: 'http://weblayer.us-east-1.elasticbeanstalk.com/account/UserValidate',
+    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/UserValidate',
     dataType: 'json',   
     success: function(response) {
       alert("hola "+response.DataObject.Nombre)

@@ -43,6 +43,7 @@
                      <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
                      <li><a href="CancelarCita.html">Cancelar cita</a></li>
                      <li><a href="DatosBasicos.html">Datos básicos</a></li>
+                     <div id="IdCita" style="display: none;"></div>
                   </ul>
                 </div>
               </div>
@@ -113,6 +114,7 @@
     </div>
        <div class="text-right">
        <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
+       <button type="button" class="btn  btn-raised btn-danger" onclick="cancelarCita()">Cancelar Cita</button>
     </div>
   </div>
     
@@ -133,13 +135,14 @@
     $(function () {
       $.material.init();      
         debugger;
+        var idCita=parseInt(getUrlVars()["id"]);
        
         $.ajax({
         type: 'POST',
         data: {
-          Cita: 1
+          Cita: idCita
         },
-        url: 'http://localhost:65149/account/GetDetalleCita',
+        url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com//account/GetDetalleCita',
         dataType: 'json',   
         success: function(response) {
         
@@ -152,16 +155,30 @@
           $("#especialidad").val(response.DataObject.Especialidad);        
           $("#motivocancela").val(response.DataObject.Motivo); 
           $("#justificacion").val(response.DataObject.Justificacion); 
+          $("#IdCita").val(response.DataObject.Cita);
 
         },
         error: function(msg){
           $('#boton_enviar').attr('disabled', false);
         }
        });
+
+      
  
       
      
-    });    
+    });   
+    function getUrlVars() {
+         var vars = {};
+         var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+         vars[key] = value;
+         });
+         return vars;
+         }
+
+         function cancelarCita() {
+            alert($('#IdCita')[0].value);
+         } 
   </script>
   </body>
   </html>
