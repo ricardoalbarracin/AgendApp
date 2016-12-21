@@ -114,7 +114,7 @@
     </div>
        <div class="text-right">
        <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
-       <button type="button" class="btn  btn-raised btn-danger" onclick="cancelarCita()">Cancelar Cita</button>
+       <button type="button" class="btn  btn-danger" onclick="cancelarCita()">Cancelar Cita</button>
     </div>
   </div>
     
@@ -142,7 +142,7 @@
         data: {
           Cita: idCita
         },
-        url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com//account/GetDetalleCita',
+        url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetDetalleCita',
         dataType: 'json',   
         success: function(response) {
         
@@ -177,7 +177,8 @@
          }
 
          function cancelarCita() {
-            alert($('#IdCita')[0].value);
+         
+            window.location="CancelarCita.html?id="+ $('#IdCita')[0].value;
          } 
   </script>
   </body>

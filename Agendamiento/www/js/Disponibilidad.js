@@ -5,7 +5,7 @@ function mostrarCitasAgendadas(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -26,13 +26,13 @@ function mostrarCitasAgendadas(id) {
 
  $.ajax({
     type: 'POST',   
-    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
+    data: {
       Esm: $("#regional").val(),
       Profesional: $("#profesional").val(),
       Especialidad: $("#especialidad").val()     
     }, 
 
-    url: 'http://localhost:65149//account/GetCitasDisponibles',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
     dataType: 'json',    
     success: function(response) {
  
@@ -58,7 +58,7 @@ function mostrarCitasAgendadas(id) {
      data: {
       Autorizacion:$("#autorizacion").val()
     },  
-    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
       $( "#citasAgendadas" ).empty();
@@ -150,7 +150,7 @@ function mostrarCitasAgendadas(id) {
       parametro1: $('#nombre').val(),
       parametro2: $('#email').val()
     },
-    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/UserValidate',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/UserValidate',
     dataType: 'json',   
     success: function(response) {
       alert("hola "+response.DataObject.Nombre)

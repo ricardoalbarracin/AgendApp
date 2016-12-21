@@ -90,7 +90,11 @@
       Email:correo.value ,
       Clave: $('#ClaveInput')[0].value
     },
-    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/UserValidatePost',
+<<<<<<< HEAD
+    url: 'http://sample-env.mndm6cknam.us-east-1.elasticbeanstalk.com/account/UserValidatePost',
+=======
+    url: 'http://localhost:65149//account/UserValidatePost',
+>>>>>>> b3b7c444c318a4c68fed274ad2030597c2d03d76
     dataType: 'json',   
     success: function(response) {
       debugger;
