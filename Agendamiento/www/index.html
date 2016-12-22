@@ -91,6 +91,7 @@
       
       if(response.DataObject== null){
         alert("Correo o contraseña incorrecta");
+        $('#boton_enviar').attr('disabled', false);
       }else{
          window.location="Agenda.html?IdAfiliado="+response.DataObject.Id;
            $('#boton_enviar').attr('disabled', false);
