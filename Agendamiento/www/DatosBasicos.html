@@ -118,7 +118,7 @@
               data: {
                 IdAfiliado: $('#IdAfiliado').val()
               },
-              url: 'http://localhost:62684//Account/GetDatosBasicos',
+              url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/GetDatosBasicos',
               dataType: 'json',   
               success: function(response) {    
                   $("#paciente").val(response.DataObject.Nombres);     

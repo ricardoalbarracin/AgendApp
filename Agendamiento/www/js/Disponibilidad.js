@@ -5,7 +5,7 @@ function mostrarCitasAgendadas(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://localhost:62684//Account/GetCitasAsignadas',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -28,7 +28,7 @@ function mostrarCitasAgendadas(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://localhost:62684//Account/GetHistoricoAgendas',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/GetHistoricoAgendas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
@@ -54,7 +54,7 @@ function mostrarCitasAgendadas(id) {
       Especialidad: $("#especialidad").val()     
     }, 
 
-    url: 'http://localhost:62684//Account/GetCitasDisponibles',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/GetCitasDisponibles',
     dataType: 'json',    
     success: function(response) {
       $( "#citasDisponibles" ).empty();
@@ -84,7 +84,7 @@ function mostrarCitasAgendadas(id) {
      data: {
       Autorizacion:$("#autorizacion").val()
     },  
-    url: 'http://localhost:62684//Account/GetCitasDisponiblesAutorizadas',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
       $( "#citasAutorizadasDisponibles" ).empty();
@@ -197,7 +197,7 @@ function confirmarCita(){
       Agenda:$("#IdAgenda").val(),
       IdAfiliado: $("#IdAfiliado").val()
     },  
-    url: 'http://localhost:62684//Account/ConfirmarCita',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/ConfirmarCita',
     dataType: 'json',   
     success: function(response) {
        alert("Cita creada exitosamente!");
@@ -223,7 +223,7 @@ function cancelarCita(){
       motivo: $("#motivoCancela").val(),
       justificacion: $("#justificacion").val()
     },  
-    url: 'http://localhost:62684//Account/CancelarCita',
+    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/CancelarCita',
     dataType: 'json',   
     success: function(response) {
       alert("Cita cancelada exitosamente!");
