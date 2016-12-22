@@ -5,11 +5,11 @@ function mostrarCitasAgendadas(id) {
     data: {
       Idafiliado:id 
     },
-    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasAsignadas',
+    url: 'http://localhost:62684//Account/GetCitasAsignadas',
     dataType: 'json',   
     success: function(response) {
       for (var i = 0; i < response.DataObject.length; i++) {
-		var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
+		var detalle= 'Medico: '+response.DataObject[i].Medico + ' Fecha:' + response.DataObject[i].Fecha;
 		datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle,Id:response.DataObject[i].Id});
 	    }
 		mostrarTabla(datos,'citasAgendadas','verDetalleCita');
@@ -21,9 +21,31 @@ function mostrarCitasAgendadas(id) {
     
  }
 
- function mostrarDisponibilidadAgenda() {
+ function mostrarHistoicoAgendas(id) {
   var datos = [];
+ $.ajax({
+    type: 'POST',
+    data: {
+      Idafiliado:id 
+    },
+    url: 'http://localhost:62684//Account/GetHistoricoAgendas',
+    dataType: 'json',   
+    success: function(response) {
+      for (var i = 0; i < response.DataObject.length; i++) {
+    var detalle= 'Medico: '+response.DataObject[i].Medico + ' Fecha:' + response.DataObject[i].Fecha+ ' Estado:' + response.DataObject[i].Estado;
+    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle,Id:response.DataObject[i].Id});
+      }
+    mostrarTabla(datos,'citasAgendadas','verDetalleCita');
+    },
+    error: function(msg){
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+    
+ }
 
+ function mostrarDisponibilidadAgenda() {
+  var datos = []; 
  $.ajax({
     type: 'POST',   
     data: {
@@ -32,14 +54,18 @@ function mostrarCitasAgendadas(id) {
       Especialidad: $("#especialidad").val()     
     }, 
 
-    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasDisponibles',
+    url: 'http://localhost:62684//Account/GetCitasDisponibles',
     dataType: 'json',    
     success: function(response) {
- 
-      $( "#citasAgendadas" ).empty();
-      for (var i = 0; i < response.DataObject.length; i++) {
-    var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
-    datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle, Agenda: response.DataObject[i].Idagenda });
+      $( "#citasDisponibles" ).empty();
+
+      if(response.DataObject== null){
+        alert("No hay agenda disponible");
+      }else{
+        for (var i = 0; i < response.DataObject.length; i++) {
+          var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
+          datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle, Agenda: response.DataObject[i].Idagenda });
+        }     
       }
     mostrarTabla(datos,'citasDisponibles','verDetalle');
     },
@@ -58,10 +84,10 @@ function mostrarCitasAgendadas(id) {
      data: {
       Autorizacion:$("#autorizacion").val()
     },  
-    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetCitasDisponiblesAutorizadas',
+    url: 'http://localhost:62684//Account/GetCitasDisponiblesAutorizadas',
     dataType: 'json',   
     success: function(response) {
-      $( "#citasAgendadas" ).empty();
+      $( "#citasAutorizadasDisponibles" ).empty();
       for (var i = 0; i < response.DataObject.length; i++) {
     var detalle= 'Medico: '+response.DataObject[i].Medico+', consultorio:' +response.DataObject[i].Consultorio + ' Fecha:' + response.DataObject[i].Fecha;
     datos.push({Titulo:response.DataObject[i].Especialidad,Descripcion:detalle, Agenda: response.DataObject[i].Idagenda});
@@ -78,8 +104,6 @@ function mostrarCitasAgendadas(id) {
   function verDetalle(e)
   {
 
-    // alert(e.medico);
-    debugger;
       $("#Titulo").empty();
       $("#Descripcion").empty();
       $("#Titulo").append(e.Titulo);
@@ -96,7 +120,7 @@ function mostrarCitasAgendadas(id) {
 
   function verDetalleCita(e)
   {
-    debugger;
+      var IdAfiliado =  $("#IdAfiliado").val();
       $("#Titulo").empty();
       $("#Descripcion").empty();
       $("#Titulo").append(e.Titulo);
@@ -106,7 +130,7 @@ function mostrarCitasAgendadas(id) {
       
       var modal_=$('#myModal');
       //modal_.modal('show');
-      window.location="DetalleCita.html?id="+ e.Id;
+      window.location="DetalleCita.html?id="+ e.Id+"&IdAfiliado="+IdAfiliado;
 
   }
 
@@ -115,7 +139,7 @@ function mostrarCitasAgendadas(id) {
         rows.forEach(function(item){crearItem(item,padreTag,funcion)});
     }
     String.prototype.format = function() {
-        var newStr = this, i = 0;
+        var newStr = this, i = 0; 
         while (/%s/.test(newStr))
             newStr = newStr.replace("%s", arguments[i++])
 
@@ -165,8 +189,7 @@ function mostrarCitasAgendadas(id) {
 
 function confirmarCita(){
 
-   debugger;
-   
+    var IdAfiliado =  $("#IdAfiliado").val();
     var datos = [];
     $.ajax({
     type: 'POST', 
@@ -174,12 +197,40 @@ function confirmarCita(){
       Agenda:$("#IdAgenda").val(),
       IdAfiliado: $("#IdAfiliado").val()
     },  
-    url: 'http://localhost:65149//account/ConfirmarCita',
+    url: 'http://localhost:62684//Account/ConfirmarCita',
     dataType: 'json',   
     success: function(response) {
-      alert("exito");
+       alert("Cita creada exitosamente!");
+       window.location="Agenda.html?IdAfiliado="+IdAfiliado;
     },
     error: function(msg){
+      alert("Ocurrió un error al agendar la cita");
+      $('#boton_enviar').attr('disabled', false);
+    }
+   });
+}
+
+function cancelarCita(){
+   debugger;   
+   var cita= $("#motivoCancela").val();
+    var IdAfiliado =  $("#IdAfiliado").val();
+
+    var datos = [];
+    $.ajax({
+    type: 'POST', 
+     data: {
+      idCita:$("#IdCita").val(),
+      motivo: $("#motivoCancela").val(),
+      justificacion: $("#justificacion").val()
+    },  
+    url: 'http://localhost:62684//Account/CancelarCita',
+    dataType: 'json',   
+    success: function(response) {
+      alert("Cita cancelada exitosamente!");
+       window.location="Agenda.html?IdAfiliado="+IdAfiliado;
+    },
+    error: function(msg){
+      alert("Ocurrió un error al cancelar la cita");
       $('#boton_enviar').attr('disabled', false);
     }
    });

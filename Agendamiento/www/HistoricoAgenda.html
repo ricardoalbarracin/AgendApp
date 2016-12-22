@@ -30,11 +30,13 @@
             </div>
             <div class="navbar-collapse collapse navbar-inverse-collapse">
                <ul class="nav navbar-nav">
-                  <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
-                  <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
-                  <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>
-                  <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>
-                  <div id="IdAfiliado" style="display: none;"></div>
+                  <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>
+                      <li><a onclick="goToPage('CambiarContrasena.html')">Cambiar contraseña</a></li>
+                      <div id="IdCita" style="display: none;"></div>
+                      <div id="IdAfiliado" style="display: none;"></div> 
                </ul>
             </div>
          </div>
@@ -42,7 +44,7 @@
       <div class="container">
          <div class="panel panel-info" style="height=100px;">
             <div class="panel-heading">
-               <h3 class="panel-title">Citas agendadas</h3>
+               <h3 class="panel-title">Histórico de citas</h3>
             </div>
             <div class="panel-body">
                <div class="list-group list-group-no-icon" id="citasAgendadas" ></div>
@@ -78,7 +80,7 @@
       <script>
          $(function () { 
             $("#IdAfiliado").val(getUrlVars()["IdAfiliado"]);
-            mostrarCitasAgendadas(getUrlVars()["IdAfiliado"]);
+            mostrarHistoicoAgendas(getUrlVars()["IdAfiliado"]);
           
          });
          function getUrlVars() {

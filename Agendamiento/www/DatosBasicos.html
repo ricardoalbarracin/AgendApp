@@ -39,10 +39,13 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
                   <ul class="nav navbar-nav">
-                    <li><a href="asignarCita.html">Asignar cita</a></li>
-                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
-                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
+                    <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>                     
+                      <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>
+                      <div id="IdCita" style="display: none;"></div>
+                      <div id="IdAfiliado" style="display: none;"></div> 
                   </ul>
                 </div>
               </div>
@@ -80,7 +83,7 @@
        </div>
 
        <div class="col-md-12 text-right">            
-             <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
+             <input class="btn btn-primary" type="button" value="Cerrar" onclick="goToPage('Agenda.html')"> 
        </div>
         </form>
         </div>
@@ -107,13 +110,43 @@
     <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>  
     <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>
  <script>
-    $(function () {      
-      $("#paciente").val("DEISY VIVIANA ORTIZ URREGO");     
-      $("#usuario").val("1122648622");     
-      $("#estado").val("Activo");          
-      $("#afiliacion").val("Cotizante");     
+    $(function () {    
+    $("#IdAfiliado").val(getUrlVars()["IdAfiliado"]);
+
+          $.ajax({
+              type: 'POST',
+              data: {
+                IdAfiliado: $('#IdAfiliado').val()
+              },
+              url: 'http://localhost:62684//Account/GetDatosBasicos',
+              dataType: 'json',   
+              success: function(response) {    
+                  $("#paciente").val(response.DataObject.Nombres);     
+                  $("#usuario").val(response.DataObject.Documento);     
+                  $("#estado").val(response.DataObject.Estado);          
+                  $("#afiliacion").val(response.DataObject.Tipoafiliacion);  
+              },
+              error: function(msg){
+                alert("ocurrió un error");
+              }
+             });
+
+           
      
     });
+
+    function goToPage(url) {
+       window.location= url + "?IdAfiliado=" + $('#IdAfiliado')[0].value
+    }
+
+    function getUrlVars() {
+       var vars = {};
+       var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+       vars[key] = value;
+       });
+     return vars;
+     }
+
   </script>
     
     </body>

@@ -39,11 +39,13 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
                   <ul class="nav navbar-nav">
-                     <li><a href="asignarCita.html">Asignar cita</a></li>
-                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
-                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
-                     <div id="IdCita" style="display: none;"></div>
+                     <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>                     
+                      <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>
+                      <div id="IdCita" style="display: none;"></div>
+                      <div id="IdAfiliado" style="display: none;"></div> 
                   </ul>
                 </div>
               </div>
@@ -58,19 +60,19 @@
       <div class="form-group col-md-12">
         <label for="motivoCancela" class=" control-label">Motivo</label>
 
-                      <div>
-                        <select id="motivoCancela" class="form-control">
-                          <option>Calamidad</option>
-                          <option>No le dieron permiso</option>
-                          <option>Esta fuera de la ciudad</option>
-                          <option>Enfermedad</option>
-                          <option>Perdida de documentos</option>
-                          <option>Ya fué atendido por el dispensario</option>
-                          <option>Tiene pico y placa</option>
-                          <option>Otro</option>
-                        </select>
-                      </div>
+          <div>
+            <select id="motivoCancela" class="form-control">
+              <option value="Calamidad">Calamidad</option>
+              <option value="No le dieron permiso">No le dieron permiso</option>
+              <option value="Esta fuera de la ciudad">Esta fuera de la ciudad</option>
+              <option value="Enfermedad">Enfermedad</option>
+              <option value="Perdida de documentos">Perdida de documentos</option>
+              <option value="Ya fué atendido por el dispensario">Ya fué atendido por el dispensario</option>                         
+              <option>Otro</option>
+            </select>
+          </div>
         </div>
+
         <div class="form-group col-md-12">
         <label for="justificacion" class="control-label">Justificación</label>
           <div>
@@ -79,7 +81,7 @@
         </div>
        <div class="text-right">
              <input class="btn btn-success" type="button" value="Aceptar" onclick="cancelarCita()"> 
-             <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
+             <input class="btn btn-primary" type="button" value="Cerrar" onclick="goToPage('Agenda.html')"> 
        </div>
         </form>
         </div>
@@ -91,6 +93,8 @@
       
     </div>
     <br>
+
+ <script src="js/Disponibilidad.js"></script>
 
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -109,11 +113,9 @@
    
     $(function () {
         
-        debugger;
         var idCita=parseInt(getUrlVars()["id"]);
+        $("#IdAfiliado").val(getUrlVars()["IdAfiliado"]);
         $("#IdCita").val(idCita);
-        
-     
     });   
     function getUrlVars() {
          var vars = {};
@@ -122,11 +124,11 @@
          });
          return vars;
          }
+      
+      function goToPage(url) {
+            window.location= url + "?IdAfiliado=" + $('#IdAfiliado')[0].value
+      }
 
-         function cancelarCita() {
-            alert($('#IdCita')[0].value+ ' ' + $('#motivoCancela')[0].value + ' ' + $('#justificacion')[0].value );
-            
-         } 
   </script>
     
     </body>

@@ -39,10 +39,12 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
                   <ul class="nav navbar-nav">
-                     <li><a href="asignarCita.html">Asignar cita</a></li>
-                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
-                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
+                    <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>                    
+                      <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>
+                       <div id="IdAfiliado" style="display: none;"></div> 
                   </ul>
                 </div>
               </div>
@@ -62,8 +64,7 @@
                 <option value="2">AUT02</option>
               </select>
             </div>
-            </div>       
-            <div id="IdAfiliado" style="display: none;"></div> 
+            </div>                 
              <div class="text-right">
                 <input class="btn btn-primary" type="button" value="Consultar disponibilidad" onclick="mostrarDisponibilidadAgendaAutorizada()"> 
              </div>
@@ -121,6 +122,11 @@
       }
 
     } );
+
+     function goToPage(url) {
+            window.location= url + "?IdAfiliado=" + $('#IdAfiliado')[0].value
+     }
+
     </script>
     
     </body>

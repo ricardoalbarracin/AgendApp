@@ -54,10 +54,6 @@
     </div>
   </div>
 
-
-    
-     
-        
       </div>
   
 
@@ -77,11 +73,10 @@
 <script>
   $(function () {
     $.material.init();
-    
-   
   });
   
   function Mostrar() {
+   
  $('#boton_enviar').attr('disabled', true);
   var correo=$('#EmailInput')[0];
     $.ajax({
@@ -90,16 +85,18 @@
       Email:correo.value ,
       Clave: $('#ClaveInput')[0].value
     },
-    url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/Account/UserValidatePost',
+    url: 'http://localhost:62684//Account/Autenticacion',
     dataType: 'json',   
-    success: function(response) {
-      debugger;
-      alert("hola "+response.DataObject.Nombres)
-      window.location="Agenda.html?id=1";
-	  $('#boton_enviar').attr('disabled', false);
-
+    success: function(response) {    
+      
+      if(response.DataObject== null){
+        alert("Correo o contraseña incorrecta");
+      }else{
+         window.location="Agenda.html?IdAfiliado="+response.DataObject.Id;
+           $('#boton_enviar').attr('disabled', false);
+      }
     },
-    error: function(msg){
+    error: function(msg){     
       $('#boton_enviar').attr('disabled', false);
     }
    });

@@ -39,11 +39,13 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
                   <ul class="nav navbar-nav">
-                    <li><a href="asignarCita.html">Asignar cita</a></li>
-                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
-                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
-                     <div id="IdCita" style="display: none;"></div>
+                      <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>                     
+                      <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>
+                      <div id="IdCita" style="display: none;"></div>
+                      <div id="IdAfiliado" style="display: none;"></div> 
                   </ul>
                 </div>
               </div>
@@ -108,13 +110,12 @@
            <label class"control-label"> Justificación cancelación </label>       
                  <input type='text' class="form-control" readonly="readonly" id="justificacion"/>                             
               </div>
-       </div>
-
+       </div>     
        </div>
     </div>
        <div class="text-right">
-       <input class="btn btn-primary" type="button" value="Cerrar" onclick="window.location.href='Agenda.html';"> 
-       <button type="button" class="btn  btn-danger" onclick="cancelarCita()">Cancelar Cita</button>
+       <input class="btn btn-primary" type="button" value="Cerrar" onclick="goToPage('Agenda.html')"> 
+       <button id = "boton_cancelar" type="button" class="btn  btn-danger" onclick="cancelaCita()">Cancelar Cita</button>
     </div>
   </div>
     
@@ -134,19 +135,18 @@
    
     $(function () {
       $.material.init();      
-        debugger;
+    
         var idCita=parseInt(getUrlVars()["id"]);
+        $("#IdAfiliado").val(getUrlVars()["IdAfiliado"]);
        
         $.ajax({
         type: 'POST',
         data: {
           Cita: idCita
         },
-        url: 'http://lowcost-env.jketzinq7a.us-east-1.elasticbeanstalk.com/account/GetDetalleCita',
+        url: 'http://localhost:62684//Account/GetDetalleCita',
         dataType: 'json',   
         success: function(response) {
-        
-        debugger;
 
           $("#FechaCita").val(response.DataObject.Fecha);
           $("#medico").val(response.DataObject.Medico);
@@ -157,16 +157,15 @@
           $("#justificacion").val(response.DataObject.Justificacion); 
           $("#IdCita").val(response.DataObject.Cita);
 
+          if(response.DataObject.Estado == "Cancelada"){        
+              $('#boton_cancelar').attr('disabled', true);
+          }
         },
         error: function(msg){
-          $('#boton_enviar').attr('disabled', false);
+         alert("Ocurrió un error");
         }
        });
 
-      
- 
-      
-     
     });   
     function getUrlVars() {
          var vars = {};
@@ -176,10 +175,15 @@
          return vars;
          }
 
-         function cancelarCita() {
+         function cancelaCita() {
          
-            window.location="CancelarCita.html?id="+ $('#IdCita')[0].value;
-         } 
+            window.location="CancelarCita.html?id="+ $('#IdCita')[0].value+"&IdAfiliado="+$("#IdAfiliado").val();
+         }
+
+         function goToPage(url) {
+            window.location= url + "?IdAfiliado=" + $('#IdAfiliado')[0].value
+         }
+
   </script>
   </body>
   </html>

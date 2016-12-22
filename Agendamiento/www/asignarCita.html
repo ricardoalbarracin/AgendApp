@@ -38,11 +38,13 @@
                   <a class="navbar-brand" >AgendApp</a>
                 </div>
                 <div class="navbar-collapse collapse navbar-inverse-collapse">
-                  <ul class="nav navbar-nav">
-                    <li><a href="asignarCita.html">Asignar cita</a></li>
-                     <li><a href="asignarCitaEspecialista.html">Asignar cita especialista</a></li>
-                     <li><a href="CancelarCita.html">Cancelar cita</a></li>
-                     <li><a href="DatosBasicos.html">Datos básicos</a></li>
+                 <ul class="nav navbar-nav">
+                     <li><a onclick="goToPage('Agenda.html')">Citas agendadas</a></li>
+                      <li><a onclick="goToPage('asignarCita.html')">Asignar cita</a></li>
+                      <li><a onclick="goToPage('asignarCitaEspecialista.html')">Asignar cita especialista</a></li>
+                      <li><a onclick="goToPage('DatosBasicos.html')" >Datos básicos</a></li>                     
+                      <li><a onclick="goToPage('HistoricoAgenda.html')">Historico de agendas</a></li>                
+                      <div id="IdAfiliado" style="display: none;"></div> 
                   </ul>
                 </div>
               </div>
@@ -84,27 +86,15 @@
             <select id="especialidad" class="form-control">
               <option value="1">Medicina general</option>
               <option value="2">Odontologia General</option>
-              <option value="3">Pediatría</option>
-              <option value="4">Ginecología</option>
             </select>
           </div>
-        </div>       
-       <div id="IdAfiliado" style="display: none;"></div> 
-        <div class="form-group col-md-6">
-          <label for="from" class="col-md-2 control-label">Desde</label>
-          <input type="text" id="from" name="from" class="form-control">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="to" class="col-md-2 control-label">Hasta  </label>
-          <input type="text" id="to" name="to" class="form-control">
-        </div>
-
+        </div>   
              <div class="text-right">
                 <input class="btn btn-primary" type="button" value="Consultar disponibilidad" onclick="mostrarDisponibilidadAgenda()"> 
              </div>
         </form>
                <div class="panel-body">
-                  <div class="list-group list-group-no-icon" id="citasDisponibles" ></div>
+                  <div class="list-group list-group-no-icon" id="citasDisponibles"></div>
              </div>
 
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -188,6 +178,11 @@
          return vars;
       }
     } );
+
+     function goToPage(url) {  
+         window.location= url + "?IdAfiliado=" + $('#IdAfiliado')[0].value
+     }
+
     </script>
     <script src="http://fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>  
     <script src="http://cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js"></script>    
